@@ -26,7 +26,8 @@ export default {
 				foreground: 'hsl(var(--foreground))',
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))'
+					foreground: 'hsl(var(--primary-foreground))',
+					hover: 'hsl(var(--primary-hover))'
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
@@ -61,7 +62,28 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				// Ocean-themed colors for seafood marketplace
+				ocean: {
+					DEFAULT: 'hsl(var(--primary))',
+					deep: 'hsl(var(--ocean-deep))',
+					light: 'hsl(var(--ocean-light))'
+				},
+				coral: 'hsl(var(--coral))',
+				seaweed: 'hsl(var(--seaweed))',
+				pearl: 'hsl(var(--pearl))',
+				sand: 'hsl(var(--sand))'
+			},
+			backgroundImage: {
+				'gradient-ocean': 'var(--gradient-ocean)',
+				'gradient-coral': 'var(--gradient-coral)',
+				'gradient-wave': 'var(--gradient-wave)',
+				'gradient-hero': 'var(--gradient-hero)'
+			},
+			boxShadow: {
+				'ocean': 'var(--shadow-ocean)',
+				'coral': 'var(--shadow-coral)',
+				'soft': 'var(--shadow-soft)'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
