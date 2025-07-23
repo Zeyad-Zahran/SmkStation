@@ -170,7 +170,7 @@ export const Footer: React.FC = () => {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-white/60 text-sm">
-              © 2024 SeaBreeze Market. {t('footer.rights')}
+              © Developed By Zeyad Zahran In 2025. {t('footer.rights')}
             </p>
             <div className="flex items-center space-x-4 space-x-reverse text-sm">
               <span className="text-white/60">
