@@ -52,7 +52,7 @@ export const Header: React.FC = () => {
               </div>
               <div className="flex flex-col">
                 <span className="font-bold text-lg gradient-text">
-                  {language === 'en' ? 'SeaBreeze' : 'نسيم البحر'}
+                  {language === 'en' ? 'SmkStation' : 'نسيم البحر'}
                 </span>
                 <span className="text-xs text-muted-foreground">
                   {language === 'en' ? 'Market' : 'ماركت'}
