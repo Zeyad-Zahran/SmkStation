@@ -63,7 +63,7 @@ export const Footer: React.FC = () => {
                 </div>
                 <div>
                   <span className="font-bold text-lg">
-                    {language === 'en' ? 'SeaBreeze Market' : 'سوق نسيم البحر'}
+                    {language === 'en' ? 'SmkStation Market' : 'سوق سمك ستيشن '}
                   </span>
                 </div>
               </div>
