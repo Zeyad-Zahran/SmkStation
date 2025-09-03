@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { HeroSection } from '@/components/home/HeroSection';
-import { ProductCard } from '@/components/products/ProductCard';
-import { useLanguage } from '@/contexts/LanguageContext';
-import { supabase } from '@/integrations/supabase/client';
+import React, { useEffect, useState } from "react";
+import { HeroSection } from "@/components/home/HeroSection";
+import { ProductCard } from "@/components/products/ProductCard";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { supabase } from "@/integrations/supabase/client";
 
 interface Product {
   id: string;
@@ -28,16 +28,16 @@ const Index = () => {
     const fetchFeaturedProducts = async () => {
       try {
         const { data, error } = await supabase
-          .from('products')
-          .select('*')
-          .eq('is_featured', true)
-          .eq('is_available', true)
-          .limit(8);
+          .from("products")
+          .select("*")
+          .eq("is_featured", true)
+          .eq("is_available", true)
+          .limit(6);
 
         if (error) throw error;
         setFeaturedProducts(data || []);
       } catch (error) {
-        console.error('Error fetching featured products:', error);
+        console.error("Error fetching featured products:", error);
       } finally {
         setLoading(false);
       }
@@ -49,27 +49,30 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <HeroSection />
-      
+
       {/* Featured Products */}
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold gradient-text mb-4">
-              {t('home.featured')}
+            <h2 className="text-3xl md:text-4xl font-bold text-essential mb-4">
+              {t("home.featured")}
             </h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Discover our handpicked selection of the finest seafood
+            <p className="text-muted text-lg max-w-2xl mx-auto ">
+              {t("home.featured_subtitle")}
             </p>
           </div>
 
           {loading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {[...Array(8)].map((_, i) => (
-                <div key={i} className="h-96 bg-muted animate-pulse rounded-lg" />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[...Array(6)].map((_, i) => (
+                <div
+                  key={i}
+                  className="h-[275px] bg-muted animate-pulse rounded-2xl"
+                />
               ))}
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 gap-x-10 justify-items-center">
               {featuredProducts.map((product) => (
                 <ProductCard key={product.id} {...product} />
               ))}
