@@ -12,13 +12,13 @@ export const LanguageSwitcher: React.FC = () => {
 
   return (
     <Button
-      variant="ghost"
-      size="sm"
-      onClick={toggleLanguage}
-      className="language-switch font-medium"
-    >
-      <Globe className="h-4 w-4 mr-2" />
-      {t('nav.language')}
-    </Button>
+  variant="ghost"
+  size="sm"
+  onClick={toggleLanguage}
+  className="language-switch font-medium text-white"
+>
+  {t('nav.language')}
+</Button>
+
   );
 };
