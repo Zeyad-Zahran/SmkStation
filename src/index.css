@@ -9,6 +9,8 @@ All colors MUST be HSL.
 @layer base {
   :root {
     /* Ocean-inspired color palette for seafood marketplace */
+    --essential: 217 65% 42%;
+    --common: 0 0% 100%;
     --background: 200 30% 98%;
     --foreground: 210 40% 8%;
 
@@ -28,7 +30,7 @@ All colors MUST be HSL.
     --secondary-foreground: 210 40% 15%;
 
     /* Muted ocean tones */
-    --muted: 200 20% 96%;
+    --muted: 0 0% 40%;
     --muted-foreground: 210 15% 45%;
 
     /* Coral accent color */
@@ -51,10 +53,23 @@ All colors MUST be HSL.
     --sand: 35 25% 88%;
 
     /* Gradients for ocean effects */
-    --gradient-ocean: linear-gradient(135deg, hsl(210 100% 40%), hsl(195 80% 50%));
+    --gradient-ocean: linear-gradient(
+      135deg,
+      hsl(210 100% 40%),
+      hsl(195 80% 50%)
+    );
     --gradient-coral: linear-gradient(135deg, hsl(15 85% 65%), hsl(25 75% 55%));
-    --gradient-wave: linear-gradient(90deg, transparent, hsl(210 100% 40% / 0.1), transparent);
-    --gradient-hero: linear-gradient(135deg, hsl(210 100% 40% / 0.9), hsl(195 80% 50% / 0.8));
+    --gradient-wave: linear-gradient(
+      90deg,
+      transparent,
+      hsl(210 100% 40% / 0.1),
+      transparent
+    );
+    --gradient-hero: linear-gradient(
+      135deg,
+      hsl(210 100% 40% / 0.9),
+      hsl(195 80% 50% / 0.8)
+    );
 
     /* Shadows with ocean theme */
     --shadow-ocean: 0 10px 30px -10px hsl(210 100% 40% / 0.3);
@@ -142,8 +157,12 @@ All colors MUST be HSL.
   }
 
   @keyframes wave {
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
   }
 
   /* Floating animation for products */
@@ -152,8 +171,13 @@ All colors MUST be HSL.
   }
 
   @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
   }
 
   /* Ripple effect for buttons */
@@ -163,7 +187,7 @@ All colors MUST be HSL.
   }
 
   .ripple-effect::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 50%;
     left: 50%;
@@ -216,13 +240,18 @@ All colors MUST be HSL.
   }
 
   .product-card::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
     transition: left 0.5s;
   }
 
@@ -255,8 +284,12 @@ All colors MUST be HSL.
   }
 
   @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 
   /* Gradient text effects */
