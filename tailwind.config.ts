@@ -78,7 +78,9 @@ export default {
 				'gradient-ocean': 'var(--gradient-ocean)',
 				'gradient-coral': 'var(--gradient-coral)',
 				'gradient-wave': 'var(--gradient-wave)',
-				'gradient-hero': 'var(--gradient-hero)'
+				'gradient-hero': 'var(--gradient-hero)',
+				'hero-bg': 'var(--hero-bg)',
+				'Newsletter-bg':'var(--Newsletter-background)'
 			},
 			boxShadow: {
 				'ocean': 'var(--shadow-ocean)',

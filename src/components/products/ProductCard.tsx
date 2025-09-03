@@ -7,6 +7,7 @@ import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useCart } from '@/contexts/CartContext';
 import { toast } from '@/hooks/use-toast';
+import fish from '@/assets/fish.png'
 
 interface ProductCardProps {
   id: string;
@@ -47,7 +48,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
   const handleAddToCart = () => {
     if (!is_available) return;
-    
+
     addItem({
       id,
       name,
@@ -58,144 +59,68 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
     toast({
       title: language === 'en' ? 'Added to cart!' : 'تم الإضافة للسلة!',
-      description: language === 'en' 
+      description: language === 'en'
         ? `${name} has been added to your cart.`
         : `تم إضافة ${name} إلى سلتك.`,
     });
   };
 
   return (
-    <Card className="group product-card overflow-hidden h-full flex flex-col transition-all duration-300 hover:shadow-ocean">
-      <div className="relative overflow-hidden">
-        {/* Product Image */}
-        <div className="aspect-square bg-gray-100 overflow-hidden">
-          {image_url ? (
-            <img
-              src={image_url}
-              alt={name}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                target.src = '/placeholder.svg';
-              }}
-            />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center bg-muted">
-              <div className="text-muted-foreground text-center">
-                <div className="text-4xl mb-2">🐟</div>
-                <span className="text-sm">No Image</span>
-              </div>
-            </div>
-          )}
-        </div>
-
-        {/* Badges */}
-        <div className="absolute top-2 left-2 flex flex-col gap-1">
-          {is_featured && (
-            <Badge variant="default" className="bg-coral text-white">
-              {language === 'en' ? 'Featured' : 'مميز'}
-            </Badge>
-          )}
-          {hasDiscount && (
-            <Badge variant="destructive">
-              -{discountPercentage}%
-            </Badge>
-          )}
-          {!is_available && (
-            <Badge variant="secondary" className="bg-gray-500 text-white">
-              {t('product.out_of_stock')}
-            </Badge>
-          )}
-        </div>
-
-        {/* Wishlist Button */}
-        <Button
-          variant="ghost"
-          size="icon"
-          className="absolute top-2 right-2 bg-white/80 hover:bg-white opacity-0 group-hover:opacity-100 transition-opacity"
-        >
-          <Heart className="h-4 w-4" />
-        </Button>
-
-        {/* Quick Add to Cart */}
-        <div className="absolute bottom-2 left-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
-          <Button
-            onClick={handleAddToCart}
-            disabled={!is_available}
-            className="w-full bg-primary/90 hover:bg-primary text-white"
-            size="sm"
-          >
-            <ShoppingCart className="h-4 w-4 mr-2" />
-            {t('product.add_to_cart')}
-          </Button>
-        </div>
+    <Card className="group product-card overflow-hidden h-full flex flex-col transition-all duration-300 shadow-md hover:shadow-lg rounded-2xl bg-white">
+      {/* Top Image / Emoji Section */}
+      <div className="bg-[#60A5FA]  rounded-2xl flex items-center justify-center h-40">
+        {image_url ? (
+          <img
+            src={fish}
+            alt={name}
+            className="h-16 w-16 object-contain"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              target.src = '/placeholder.svg';
+            }}
+          />
+        ) : (
+          <span className="text-5xl">🐟</span>
+        )}
       </div>
 
-      <CardContent className="p-4 flex-1 flex flex-col">
-        {/* Category */}
-        <div className="text-xs text-muted-foreground mb-2 uppercase tracking-wide">
-          {t(`category.${category}`)}
-        </div>
-
+      {/* Bottom Content */}
+      <CardContent className="bg-white flex-1 flex flex-col items-center text-center p-4">
         {/* Product Name */}
         <Link to={`/product/${id}`}>
-          <h3 className="font-semibold text-lg mb-2 line-clamp-2 hover:text-primary transition-colors">
+          <h3 className="font-bold text-lg text-[#1E40AF] mb-1 hover:text-primary transition-colors">
             {name}
           </h3>
         </Link>
 
         {/* Description */}
         {description && (
-          <p className="text-sm text-muted-foreground mb-3 line-clamp-2 flex-1">
+          <p className="text-[#666666] text-sm mb-3 line-clamp-2">
             {description}
           </p>
         )}
 
-        {/* Weight */}
-        {weight_kg && (
-          <div className="flex items-center text-sm text-muted-foreground mb-3">
-            <Weight className="h-4 w-4 mr-1" />
-            {weight_kg} {t('product.kg')}
-          </div>
-        )}
+        <div className="flex items-center justify-between w-full mt-2">
 
         {/* Price */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2 space-x-reverse">
-            <span className="text-lg font-bold text-primary">
-              {price.toFixed(2)} {t('common.currency')}
-            </span>
-            {hasDiscount && (
-              <span className="text-sm text-muted-foreground line-through">
-                {original_price!.toFixed(2)} {t('common.currency')}
-              </span>
-            )}
-          </div>
-          
-          {hasDiscount && (
-            <Badge variant="outline" className="text-green-600 border-green-600">
-              {t('product.save')} {(original_price! - price).toFixed(2)}
-            </Badge>
-          )}
+        <div className="text-green-600 font-bold text-lg mb-3">
+          ${price}/kg
         </div>
-      </CardContent>
 
-      <CardFooter className="p-4 pt-0">
-        <div className="flex space-x-2 space-x-reverse w-full">
-          <Button
-            onClick={handleAddToCart}
-            disabled={!is_available}
-            className="flex-1 ripple-effect"
-            variant={is_available ? "default" : "secondary"}
-          >
-            <ShoppingCart className="h-4 w-4 mr-2" />
-            {is_available ? t('product.add_to_cart') : t('product.out_of_stock')}
-          </Button>
-          <Button variant="outline" size="icon">
-            <Heart className="h-4 w-4" />
-          </Button>
+        {/* Add to Cart Button */}
+        <Button
+          onClick={handleAddToCart}
+          disabled={!is_available}
+          className="bg-[#1E3A8A] hover:bg-[#153E75] text-white rounded-full px-4 py-2 transition"
+          size="sm"
+        >
+          {t('product.add_to_cart')}
+        </Button>
+
         </div>
-      </CardFooter>
+
+      </CardContent>
     </Card>
+
   );
 };

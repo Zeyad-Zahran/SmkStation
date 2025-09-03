@@ -17,7 +17,7 @@ export const LanguageSwitcher: React.FC = () => {
       onClick={toggleLanguage}
       className="language-switch font-medium"
     >
-      <Globe className="h-4 w-4 mr-2" />
+      {/* <Globe className="h-4 w-4 mr-2" /> */}
       {t('nav.language')}
     </Button>
   );
